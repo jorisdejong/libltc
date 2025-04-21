@@ -65,6 +65,12 @@ extern "C" {
 # define DEPRECATED_EXPORT
 #endif
 
+#ifdef LIBLTC_EXPORTS
+#define LIBLTC_API __declspec(dllexport)
+#else
+#define LIBLTC_API __declspec(dllimport)
+#endif
+
 #include <stddef.h> /* size_t */
 
 #ifndef DOXYGEN_IGNORE
@@ -354,7 +360,7 @@ typedef struct LTCEncoder LTCEncoder;
  * if LTC_USE_DATE is set, the user-fields in LTCFrame will be parsed into the date variable of SMPTETimecode.
  * otherwise the date information in the SMPTETimecode is set to zero.
  */
-void ltc_frame_to_time(SMPTETimecode* stime, LTCFrame* frame, int flags);
+LIBLTC_API void ltc_frame_to_time(SMPTETimecode* stime, LTCFrame* frame, int flags);
 
 /**
  * Translate SMPTETimecode struct into its binary LTC representation
@@ -419,14 +425,14 @@ int ltc_frame_decrement(LTCFrame* frame, int fps, enum LTC_TV_STANDARD standard,
  * to SMPTEDecoderWrite.
  * @return decoder handle or NULL if out-of-memory
  */
-LTCDecoder * ltc_decoder_create(int apv, int queue_size);
+LIBLTC_API LTCDecoder * ltc_decoder_create(int apv, int queue_size);
 
 
 /**
  * Release memory of decoder.
  * @param d decoder handle
  */
-int ltc_decoder_free(LTCDecoder *d);
+LIBLTC_API int ltc_decoder_free(LTCDecoder *d);
 
 /**
  * Feed the LTC decoder with new audio samples.
@@ -463,7 +469,7 @@ void ltc_decoder_write_double(LTCDecoder *d, double *buf, size_t size, ltc_off_t
  * @param size number of samples to parse
  * @param posinfo (optional, recommended) sample-offset in the audio-stream.
  */
-void ltc_decoder_write_float(LTCDecoder *d, float *buf, size_t size, ltc_off_t posinfo);
+LIBLTC_API void ltc_decoder_write_float(LTCDecoder *d, float *buf, size_t size, ltc_off_t posinfo);
 
 /**
  * Wrapper around \ref ltc_decoder_write that accepts signed 16 bit
@@ -495,7 +501,7 @@ void ltc_decoder_write_u16(LTCDecoder *d, unsigned short *buf, size_t size, ltc_
  * @param frame the decoded LTC frame is copied there
  * @return 1 on success or 0 when no frames queued.
  */
-int ltc_decoder_read(LTCDecoder *d, LTCFrameExt *frame);
+LIBLTC_API int ltc_decoder_read(LTCDecoder *d, LTCFrameExt *frame);
 
 /**
  * Remove all LTC frames from the internal queue.
