@@ -65,10 +65,10 @@ extern "C" {
 # define DEPRECATED_EXPORT
 #endif
 
-#ifdef LIBLTC_EXPORTS
-#define LIBLTC_API __declspec(dllexport)
-#else
+#ifdef _WIN32
 #define LIBLTC_API __declspec(dllimport)
+#else
+#define LIBLTC_API extern  __attribute__((visibility("default")))
 #endif
 
 #include <stddef.h> /* size_t */
