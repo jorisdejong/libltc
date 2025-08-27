@@ -5,7 +5,7 @@ set -x  # print commands as they run
 CONFIGURATION="${1:-Release}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LIBLTC_BUILD="${SCRIPT_DIR}/../../Modules/libltc/builds"
+LIBLTC_BUILD="${SCRIPT_DIR}/../../builds"
 LIBLTC_DYLIB="${LIBLTC_BUILD}/${CONFIGURATION}/liblibltc.dylib"
 
 echo "CONFIGURATION: $CONFIGURATION"

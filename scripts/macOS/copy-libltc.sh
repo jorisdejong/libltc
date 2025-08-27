@@ -7,12 +7,12 @@ CONFIGURATION="${1:-Release}"
 
 # Project-relative path
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-LIBLTC_BUILD="${SCRIPT_DIR}/../../Modules/libltc/builds"
+LIBLTC_BUILD="${SCRIPT_DIR}/../../builds"
 LIBLTC_DYLIB="${LIBLTC_BUILD}/${CONFIGURATION}/liblibltc.dylib"
 
 # Name of your .app (change if different!)
 APP_NAME="HeadsUp"
-APP_BUNDLE="${SCRIPT_DIR}/build/${CONFIGURATION}/${APP_NAME}.app"
+APP_BUNDLE="${SCRIPT_DIR}/../../../../build/binaries/${CONFIGURATION}/${APP_NAME}.app"
 FRAMEWORKS_DIR="${APP_BUNDLE}/Contents/Frameworks"
 
 # Check for dylib
